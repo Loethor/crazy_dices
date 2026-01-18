@@ -1,11 +1,76 @@
-[gd_scene load_steps=2 format=3 uid="uid://v10y3nhhyxhp"]
+[gd_scene load_steps=3 format=3 uid="uid://v10y3nhhyxhp"]
 
-[ext_resource type="PackedScene" uid="uid://p6b6xno8tuse" path="res://scenes/d_6.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://cddv0js8q6o4n" path="res://scripts/dice_position.gd" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://bwsg7f7qqj0ft" path="res://scripts/game.gd" id="1_yqjtg"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_yqjtg")
 
-[node name="D6_" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(101, 55)
+[node name="Dices" type="Node2D" parent="."]
 
-[node name="D6_2" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(210, 53)
+[node name="DicePositions" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="DicePositions"]
+position = Vector2(80, 60)
+script = ExtResource("1_uwrxv")
+order = 1
+
+[node name="Marker2D2" type="Marker2D" parent="DicePositions"]
+position = Vector2(160, 60)
+script = ExtResource("1_uwrxv")
+
+[node name="Marker2D3" type="Marker2D" parent="DicePositions"]
+position = Vector2(240, 60)
+script = ExtResource("1_uwrxv")
+order = 2
+
+[node name="Marker2D4" type="Marker2D" parent="DicePositions"]
+position = Vector2(80, 120)
+script = ExtResource("1_uwrxv")
+order = 4
+
+[node name="Marker2D5" type="Marker2D" parent="DicePositions"]
+position = Vector2(160, 120)
+script = ExtResource("1_uwrxv")
+order = 3
+
+[node name="Marker2D6" type="Marker2D" parent="DicePositions"]
+position = Vector2(240, 120)
+script = ExtResource("1_uwrxv")
+order = 5
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Debug" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -51.0
+offset_top = -48.0
+offset_right = -5.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="SpawnDiceButton" type="Button" parent="CanvasLayer/Debug"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Spawn Dice"
+
+[node name="RemoveDiceButton" type="Button" parent="CanvasLayer/Debug"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Remove Dice"
+
+[node name="GoldLabel" type="Label" parent="CanvasLayer"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 29.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 8
+text = "Gold: 0"
+
+[connection signal="pressed" from="CanvasLayer/Debug/SpawnDiceButton" to="." method="_on_spawn_dice_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Debug/RemoveDiceButton" to="." method="_on_remove_dice_button_pressed"]

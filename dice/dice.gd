@@ -31,7 +31,7 @@ func roll() -> void:
 	_update_face(rolled_value)
 	print("Rolled: ", rolled_value)
 	number_rolled.emit(rolled_value)
-	PlayerStats.player_gold += dice_stats.gold_value[rolled_value-1]
+	GameState.player_gold += dice_stats.gold_value[rolled_value-1]
 
 func _update_face(rolled_value:int ) -> void:
 	sprite_2d.frame = rolled_value - 1
@@ -42,7 +42,7 @@ func toggle_highlight():
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if is_dice_selected:
-			PlayerStats.remove_dice(self)
+			GameState.remove_dice(self)
 		else:
-			PlayerStats.add_dice(self)
+			GameState.add_dice(self)
 		toggle_highlight()

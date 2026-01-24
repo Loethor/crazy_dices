@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://u5fd5osscsa4"]
+
+[ext_resource type="Script" uid="uid://df27wlpnypfku" path="res://debug/debug.gd" id="1_ikwhb"]
+
+[node name="Debug" type="VBoxContainer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 56.0
+offset_bottom = -10.0
+grow_vertical = 0
+script = ExtResource("1_ikwhb")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 2
+
+[node name="SpawnDiceButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "+Dice"
+
+[node name="RemoveDiceButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "-Dice"
+
+[node name="Add5GoldButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "+5g"
+
+[node name="Remove5GoldButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "-5g"
+
+[node name="Add1GoldButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "+1g"
+
+[node name="Remove1GoldButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "-1g"
+
+[connection signal="pressed" from="GridContainer/SpawnDiceButton" to="." method="_on_spawn_dice_button_pressed"]
+[connection signal="pressed" from="GridContainer/RemoveDiceButton" to="." method="_on_remove_dice_button_pressed"]
+[connection signal="pressed" from="GridContainer/Add5GoldButton" to="." method="_on_add_5_gold_button_pressed"]
+[connection signal="pressed" from="GridContainer/Remove5GoldButton" to="." method="_on_remove_5_gold_button_pressed"]
+[connection signal="pressed" from="GridContainer/Add1GoldButton" to="." method="_on_add_1_gold_button_pressed"]
+[connection signal="pressed" from="GridContainer/Remove1GoldButton" to="." method="_on_remove_1_gold_button_pressed"]

@@ -7,33 +7,41 @@ const MIN_NUMBER_OF_DICES := 1
 
 @onready var dice_positions: Node2D = $DicePositions
 @onready var dices: Node2D = $Dices
-@onready var debug: VBoxContainer = $CanvasLayer/Debug
 
 @export var is_debug_enabled:bool = true
+@export var debug: Debug
 
 func _ready() -> void:
-	debug.visible = is_debug_enabled
+	_setup_debug()
 	_spawn_dice()
 
+func _setup_debug() -> void:
+	debug.visible = is_debug_enabled
+	if debug:
+		debug.spawn_dice_pressed.connect(_on_spawn_dice_button_pressed)
+		debug.remove_dice_pressed.connect(_on_remove_dice_button_pressed)
+
+
+
 func _spawn_dice():
-	if PlayerStats.current_position < MAX_NUMBER_OF_DICES:
+	if GameState.current_position < MAX_NUMBER_OF_DICES:
 		var dice_scenes:Array[PackedScene] = [D_4,D_6]
 		var random_dice = dice_scenes.pick_random()
 		var dice: Dice = random_dice.instantiate()
 		dice.position = get_current_position()
 		dices.add_child(dice)
-		PlayerStats.current_position += 1
+		GameState.current_position += 1
 
 func _remove_dice():
-	if PlayerStats.current_position >= MIN_NUMBER_OF_DICES:
-		PlayerStats.current_position -= 1
+	if GameState.current_position >= MIN_NUMBER_OF_DICES:
+		GameState.current_position -= 1
 		var dice_to_remove = dices.get_child(-1)
 		dice_to_remove.queue_free()
 
 func get_current_position() -> Vector2:
 	for dice_position in dice_positions.get_children():
 		if dice_position is DicePosition:
-			if PlayerStats.current_position == dice_position.order:
+			if GameState.current_position == dice_position.order:
 				return dice_position.position
 	return Vector2.ZERO
 

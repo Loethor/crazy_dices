@@ -14,10 +14,11 @@ mouse_filter = 2
 
 [node name="GoldLabel" parent="." instance=ExtResource("1_nb4k0")]
 layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 21.0
-offset_bottom = 23.0
+offset_top = 6.0
+offset_right = 46.0
+offset_bottom = 14.0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RollButton" type="Button" parent="."]
 custom_minimum_size = Vector2(60, 20)
@@ -36,3 +37,5 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 8
 text = "Roll (0 gold)"
 script = ExtResource("2_ks8t7")
+
+[connection signal="pressed" from="RollButton" to="RollButton" method="_on_pressed"]

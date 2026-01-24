@@ -2,11 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cddv0js8q6o4n" path="res://dice/dice_position.gd" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://bwsg7f7qqj0ft" path="res://main/game.gd" id="1_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://n6kr324me2cv" path="res://ui/gold_label.tscn" id="3_ph3h8"]
+[ext_resource type="PackedScene" uid="uid://cmyq13tvqep5k" path="res://ui/ui.tscn" id="4_46yon"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_yqjtg")
-is_debug_enabled = null
 
 [node name="Dices" type="Node2D" parent="."]
 
@@ -63,7 +62,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "Remove Dice"
 
-[node name="GoldLabel" parent="CanvasLayer" instance=ExtResource("3_ph3h8")]
+[node name="UI" parent="CanvasLayer" instance=ExtResource("4_46yon")]
 
 [connection signal="pressed" from="CanvasLayer/Debug/SpawnDiceButton" to="." method="_on_spawn_dice_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Debug/RemoveDiceButton" to="." method="_on_remove_dice_button_pressed"]

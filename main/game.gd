@@ -2,9 +2,10 @@ extends Node2D
 
 const D_6 := preload("uid://p6b6xno8tuse")
 const D_4 := preload("uid://uknn3h2no3y4")
+const MAX_NUMBER_OF_DICES := 6
+const MIN_NUMBER_OF_DICES := 1
 
 @onready var dice_positions: Node2D = $DicePositions
-@onready var gold_label: Label = $CanvasLayer/GoldLabel
 @onready var dices: Node2D = $Dices
 @onready var debug: VBoxContainer = $CanvasLayer/Debug
 
@@ -15,7 +16,7 @@ func _ready() -> void:
 	_spawn_dice()
 
 func _spawn_dice():
-	if PlayerStats.current_position < 6:
+	if PlayerStats.current_position < MAX_NUMBER_OF_DICES:
 		var dice_scenes:Array[PackedScene] = [D_4,D_6]
 		var random_dice = dice_scenes.pick_random()
 		var dice: Dice = random_dice.instantiate()
@@ -24,7 +25,7 @@ func _spawn_dice():
 		PlayerStats.current_position += 1
 
 func _remove_dice():
-	if PlayerStats.current_position >= 1:
+	if PlayerStats.current_position >= MIN_NUMBER_OF_DICES:
 		PlayerStats.current_position -= 1
 		var dice_to_remove = dices.get_child(-1)
 		dice_to_remove.queue_free()

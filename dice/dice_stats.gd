@@ -5,6 +5,7 @@ class_name DiceStats
 var number_of_faces: int
 var slots: Array[DiceSlot]
 var gold_value: Array[int]
+var roll_cost:int = 1
 
 # Probability per face (must sum to 1.0)
 var probabilities: Array[float]

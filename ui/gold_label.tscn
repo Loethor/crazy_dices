@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://n6kr324me2cv"]
+
+[ext_resource type="Script" uid="uid://kfcrdtljd8p6" path="res://ui/gold_label.gd" id="1_75thq"]
+
+[node name="GoldLabel" type="Label"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 29.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 8
+text = "Gold: 0"
+script = ExtResource("1_75thq")

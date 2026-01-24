@@ -1,7 +1,7 @@
 class_name Dice
 extends Area2D
 
-signal rolled(rolled_value:int, gold_value:int)
+signal number_rolled(rolled_value:int)
 
 @export var dice_type: Types.DICE_TYPE
 
@@ -26,7 +26,8 @@ func roll() -> void:
 	var rolled_value = randi_range(1, number_of_faces)
 	_update_face(rolled_value)
 	print("Rolled: ", rolled_value)
-	rolled.emit(rolled_value, dice_stats.gold_value[rolled_value-1])
+	number_rolled.emit(rolled_value)
+	PlayerStats.player_gold += dice_stats.gold_value[rolled_value-1]
 
 func _update_face(rolled_value:int ) -> void:
 	sprite_2d.frame = rolled_value - 1

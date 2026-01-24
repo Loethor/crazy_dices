@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://uknn3h2no3y4"]
+
+[ext_resource type="Script" uid="uid://dcgabe1v2bon4" path="res://dice/dice.gd" id="1_ns13l"]
+[ext_resource type="Texture2D" uid="uid://bgfhse4jdmoc7" path="res://assets/d4.png" id="2_ps7yq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4grw"]
+size = Vector2(32, 32)
+
+[node name="D4_" type="Area2D"]
+script = ExtResource("1_ns13l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ps7yq")
+hframes = 4
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_o4grw")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

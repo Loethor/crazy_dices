@@ -1,16 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://p6b6xno8tuse"]
 
-[ext_resource type="Texture2D" uid="uid://bdmxjowgpbx32" path="res://assets/d6.png" id="1_3vpph"]
-[ext_resource type="Script" uid="uid://dcgabe1v2bon4" path="res://scripts/d_6.gd" id="1_ejwej"]
+[ext_resource type="Script" uid="uid://dcgabe1v2bon4" path="res://dice/dice.gd" id="1_ibbqk"]
+[ext_resource type="Texture2D" uid="uid://bdmxjowgpbx32" path="res://assets/d6.png" id="2_fan6a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vpph"]
 size = Vector2(32, 32)
 
 [node name="D6_" type="Area2D"]
-script = ExtResource("1_ejwej")
+script = ExtResource("1_ibbqk")
+dice_type = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_3vpph")
+texture = ExtResource("2_fan6a")
 hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

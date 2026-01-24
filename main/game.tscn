@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://v10y3nhhyxhp"]
 
-[ext_resource type="Script" uid="uid://cddv0js8q6o4n" path="res://scripts/dice_position.gd" id="1_uwrxv"]
-[ext_resource type="Script" uid="uid://bwsg7f7qqj0ft" path="res://scripts/game.gd" id="1_yqjtg"]
+[ext_resource type="Script" uid="uid://cddv0js8q6o4n" path="res://dice/dice_position.gd" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://bwsg7f7qqj0ft" path="res://main/game.gd" id="1_yqjtg"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_yqjtg")
@@ -42,16 +42,13 @@ order = 5
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Debug" type="VBoxContainer" parent="CanvasLayer"]
-anchors_preset = 3
-anchor_left = 1.0
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -51.0
-offset_top = -48.0
-offset_right = -5.0
-offset_bottom = -8.0
-grow_horizontal = 0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 56.0
+offset_bottom = -10.0
 grow_vertical = 0
 
 [node name="SpawnDiceButton" type="Button" parent="CanvasLayer/Debug"]

@@ -50,3 +50,10 @@ func unselect_all_dices() -> void:
 	selected_dices = []
 	calculate_roll_cost()
 	number_of_dice_changed.emit()
+
+func process_roll() -> void:
+	# Button only enabled if you can pay, no need to check
+	player_gold -= roll_cost
+	for dice in selected_dices:
+		dice.roll()
+	unselect_all_dices()

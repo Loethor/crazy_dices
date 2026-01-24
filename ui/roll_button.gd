@@ -18,10 +18,4 @@ func _check_cost() -> void:
 	(GameState.selected_dices.size() == 0)
 
 func _on_pressed() -> void:
-
-	# Button only enabled if you can pay, no need to check
-	GameState.player_gold -= GameState.roll_cost
-	print(GameState.selected_dices)
-	for dice in GameState.selected_dices:
-		dice.roll()
-	GameState.unselect_all_dices()
+	GameState.process_roll()

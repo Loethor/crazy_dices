@@ -42,7 +42,7 @@ func toggle_highlight():
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if is_dice_selected:
-			GameState.remove_dice(self)
+			GameState.unselect_dice(self)
 		else:
-			GameState.add_dice(self)
+			GameState.select_dice(self)
 		toggle_highlight()

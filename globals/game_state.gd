@@ -18,16 +18,14 @@ func _set_player_gold(new_gold:int) -> void:
 
 var selected_dices: Array[Dice] = []
 
-func add_dice(new_dice: Dice) -> void:
+func select_dice(new_dice: Dice) -> void:
 	if new_dice not in selected_dices:
 		new_dice.is_dice_selected = true
 		selected_dices.append(new_dice)
 		extra_cost += new_dice.dice_stats.roll_cost
 		calculate_roll_cost()
 
-
-
-func remove_dice(dice_to_remove: Dice) -> void:
+func unselect_dice(dice_to_remove: Dice) -> void:
 	if dice_to_remove in selected_dices:
 		dice_to_remove.is_dice_selected = false
 		extra_cost -= dice_to_remove.dice_stats.roll_cost

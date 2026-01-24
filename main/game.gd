@@ -35,7 +35,9 @@ func _spawn_dice():
 func _remove_dice():
 	if GameState.current_position >= MIN_NUMBER_OF_DICES:
 		GameState.current_position -= 1
-		var dice_to_remove = dices.get_child(-1)
+		var dice_to_remove:Dice = dices.get_child(-1)
+		if dice_to_remove.is_dice_selected:
+			GameState.unselect_dice(dice_to_remove)
 		dice_to_remove.queue_free()
 
 func get_current_position() -> Vector2:

@@ -2,6 +2,7 @@ extends Node
 
 signal gold_changed()
 signal roll_cost_changed()
+signal number_of_dice_changed()
 
 var current_position: int = 0
 var roll_cost: int = 0 : set = _set_roll_cost
@@ -24,13 +25,16 @@ func select_dice(new_dice: Dice) -> void:
 		selected_dices.append(new_dice)
 		extra_cost += new_dice.dice_stats.roll_cost
 		calculate_roll_cost()
+		number_of_dice_changed.emit()
 
 func unselect_dice(dice_to_remove: Dice) -> void:
 	if dice_to_remove in selected_dices:
 		dice_to_remove.is_dice_selected = false
 		extra_cost -= dice_to_remove.dice_stats.roll_cost
+		dice_to_remove.toggle_highlight()
 		selected_dices.erase(dice_to_remove)
 		calculate_roll_cost()
+		number_of_dice_changed.emit()
 
 func calculate_roll_cost() -> void:
 	if selected_dices.size() > 1:
@@ -41,3 +45,8 @@ func calculate_roll_cost() -> void:
 func unselect_all_dices() -> void:
 	for dice in selected_dices:
 		dice.is_dice_selected = false
+		dice.toggle_highlight()
+		extra_cost -= dice.dice_stats.roll_cost
+	selected_dices = []
+	calculate_roll_cost()
+	number_of_dice_changed.emit()

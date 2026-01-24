@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw3x7xycnl3tp"]
+
+[ext_resource type="Script" uid="uid://c8k6a68edihbq" path="res://ui/roll_button.gd" id="1_s5b3k"]
+
+[node name="RollButton" type="Button"]
+custom_minimum_size = Vector2(60, 20)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -65.0
+offset_top = -33.0
+offset_right = -12.0
+offset_bottom = -13.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 8
+text = "Roll (0 gold)"
+script = ExtResource("1_s5b3k")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

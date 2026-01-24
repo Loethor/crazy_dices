@@ -22,7 +22,6 @@ func _setup_debug() -> void:
 		debug.remove_dice_pressed.connect(_on_remove_dice_button_pressed)
 
 
-
 func _spawn_dice():
 	if GameState.current_position < MAX_NUMBER_OF_DICES:
 		var dice_scenes:Array[PackedScene] = [D_4,D_6]

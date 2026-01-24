@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cmyq13tvqep5k"]
 
 [ext_resource type="PackedScene" uid="uid://n6kr324me2cv" path="res://ui/gold_label.tscn" id="1_nb4k0"]
-[ext_resource type="Script" uid="uid://c8k6a68edihbq" path="res://ui/roll_button.gd" id="2_ks8t7"]
+[ext_resource type="PackedScene" uid="uid://bw3x7xycnl3tp" path="res://ui/roll_button.tscn" id="2_ks8t7"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -14,28 +14,16 @@ mouse_filter = 2
 
 [node name="GoldLabel" parent="." instance=ExtResource("1_nb4k0")]
 layout_mode = 0
+offset_left = 0.0
 offset_top = 6.0
 offset_right = 46.0
 offset_bottom = 14.0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RollButton" type="Button" parent="."]
-custom_minimum_size = Vector2(60, 20)
+[node name="RollButton" parent="." instance=ExtResource("2_ks8t7")]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -65.0
-offset_top = -33.0
-offset_right = -12.0
-offset_bottom = -13.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 8
-text = "Roll (0 gold)"
-script = ExtResource("2_ks8t7")
-
-[connection signal="pressed" from="RollButton" to="RollButton" method="_on_pressed"]
+offset_left = -86.0
+offset_top = -31.0
+offset_right = -9.0
+offset_bottom = -11.0

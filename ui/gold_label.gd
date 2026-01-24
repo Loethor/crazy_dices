@@ -7,7 +7,3 @@ func _ready() -> void:
 
 func _update_gold_label() -> void:
 	text = "Gold: %s" % GameState.player_gold
-
-
-func _on_roll_button_pressed() -> void:
-	pass # Replace with function body.

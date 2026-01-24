@@ -4,12 +4,18 @@ extends VBoxContainer
 signal spawn_dice_pressed
 signal remove_dice_pressed
 @onready var dice_label: Label = $GridContainer/DiceLabel
+@onready var turn_label: Label = $GridContainer/TurnLabel
 
 func  _ready() -> void:
 	GameState.number_of_dice_changed.connect(_on_number_of_dice_changed)
+	GameState.game_turn_changed.connect(_on_game_turn_changed)
+	_on_game_turn_changed()
 
 func _on_number_of_dice_changed() -> void:
 	dice_label.text = "Dices: %s" % GameState.selected_dices.size()
+
+func _on_game_turn_changed() -> void:
+	turn_label.text = "Turn: %s" % GameState.game_turn
 
 func _on_spawn_dice_button_pressed() -> void:
 	spawn_dice_pressed.emit()

@@ -20,7 +20,7 @@ columns = 2
 [node name="DiceLabel" type="Label" parent="GridContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="GridContainer"]
+[node name="TurnLabel" type="Label" parent="GridContainer"]
 layout_mode = 2
 
 [node name="SpawnDiceButton" type="Button" parent="GridContainer"]

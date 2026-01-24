@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bsvmbn02wdyyu"]
+
+[node name="GameProgress" type="ProgressBar"]
+offset_right = 4.0
+offset_bottom = 4.0
+max_value = 30.0
+step = 1.0
+show_percentage = false

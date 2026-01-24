@@ -3,6 +3,17 @@ extends Node
 signal gold_changed()
 signal roll_cost_changed()
 signal number_of_dice_changed()
+signal game_turn_changed()
+
+const MAX_TURN:int = 30
+const SHOP_TURN:int = 5
+const CHECK_TURN:int = 10
+
+var game_turn:int = 0 : set = _set_game_turn
+
+func _set_game_turn(new_turn:int) -> void:
+	game_turn = new_turn
+	game_turn_changed.emit()
 
 var current_position: int = 0
 var roll_cost: int = 0 : set = _set_roll_cost
@@ -57,3 +68,5 @@ func process_roll() -> void:
 	for dice in selected_dices:
 		dice.roll()
 	unselect_all_dices()
+
+	game_turn += 1

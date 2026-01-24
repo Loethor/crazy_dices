@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmyq13tvqep5k"]
+[gd_scene load_steps=5 format=3 uid="uid://cmyq13tvqep5k"]
 
 [ext_resource type="PackedScene" uid="uid://n6kr324me2cv" path="res://ui/gold_label.tscn" id="1_nb4k0"]
 [ext_resource type="PackedScene" uid="uid://bw3x7xycnl3tp" path="res://ui/roll_button.tscn" id="2_ks8t7"]
+[ext_resource type="PackedScene" uid="uid://bsvmbn02wdyyu" path="res://ui/game_progress.tscn" id="3_wl5ax"]
+[ext_resource type="Script" uid="uid://bv6ia1e46asi" path="res://ui/game_progress.gd" id="4_vkava"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -13,17 +15,39 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="GoldLabel" parent="." instance=ExtResource("1_nb4k0")]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 6.0
-offset_right = 46.0
-offset_bottom = 14.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -54.0
+offset_top = 19.0
+offset_right = -8.0
+offset_bottom = 27.0
+grow_horizontal = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RollButton" parent="." instance=ExtResource("2_ks8t7")]
 layout_mode = 1
-offset_left = -86.0
-offset_top = -31.0
-offset_right = -9.0
-offset_bottom = -11.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -82.0
+offset_top = -28.0
+offset_right = -5.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="GameProgress" parent="." instance=ExtResource("3_wl5ax")]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 6.0
+offset_right = 0.0
+offset_bottom = 16.0
+grow_horizontal = 2
+script = ExtResource("4_vkava")

@@ -1,33 +1,51 @@
 extends Node
 
+## Emitted when the gold value changes.
 signal gold_changed()
+## Emitted when the roll cost changes.
 signal roll_cost_changed()
+## Emitted when the number of selected dice changes.
 signal number_of_dice_changed()
+## Emitted when the game turn changes.
 signal game_turn_changed()
 
+
+## Maximum number of turns in the game.
 const MAX_TURN:int = 30
+## The turn number when the shop phase occurs.
 const SHOP_TURN:int = 5
+## The turn number when a check phase occurs.
 const CHECK_TURN:int = 10
 
+## Current game turn.
 var game_turn:int = 0 : set = _set_game_turn
+
 
 func _set_game_turn(new_turn:int) -> void:
 	game_turn = new_turn
 	game_turn_changed.emit()
 
+## Keeps track how many of the six dice positions are filled.
 var current_position: int = 0
+
+## Cost (in gold) to roll the dice(s).
+## Scales with number of dices, and the type of dice.
 var roll_cost: int = 0 : set = _set_roll_cost
+
+## Cost to be added to the roll cost due to different effects.
 static var extra_cost:int = 0
 
 func _set_roll_cost(new_roll_cost:int) -> void:
 	roll_cost = new_roll_cost
 	roll_cost_changed.emit()
 
+## Player's current gold amount.
 var player_gold:int = 0 : set = _set_player_gold
 func _set_player_gold(new_gold:int) -> void:
 	player_gold = new_gold
 	gold_changed.emit()
 
+## Currently selected dices for rolling.
 var selected_dices: Array[Dice] = []
 
 func select_dice(new_dice: Dice) -> void:

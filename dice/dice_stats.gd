@@ -2,12 +2,18 @@
 extends RefCounted
 class_name DiceStats
 
+
+## Number of faces on the dice (e.g., 4 for D4, 6 for D6).
 var number_of_faces: int
+## Array of slots, one for each face of the dice.
+## Slots can equip effects or modifiers.
 var slots: Array[DiceSlot]
+## Gold value for each face of the dice.
 var gold_value: Array[int]
+## Extra cost in gold to roll this dice.
 var roll_cost:int = 0
 
-# Probability per face (must sum to 1.0)
+## Probability per face (must sum to 1.0)
 var probabilities: Array[float]
 
 func _init(dice_type: Types.DICE_TYPE) -> void:

@@ -1,8 +1,15 @@
-[gd_scene format=3 uid="uid://bsvmbn02wdyyu"]
+[gd_scene load_steps=2 format=3 uid="uid://bsvmbn02wdyyu"]
+
+[ext_resource type="Script" uid="uid://bv6ia1e46asi" path="res://ui/game_progress.gd" id="1_qgh35"]
 
 [node name="GameProgress" type="ProgressBar"]
-offset_right = 4.0
-offset_bottom = 4.0
+custom_minimum_size = Vector2(0, 10)
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 5.0
+offset_bottom = 15.0
+grow_horizontal = 2
 max_value = 30.0
 step = 1.0
 show_percentage = false
+script = ExtResource("1_qgh35")

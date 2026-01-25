@@ -1,11 +1,16 @@
 class_name Dice
 extends Area2D
 
+## Emitted when the dice is rolled, providing the rolled value.
 signal number_rolled(rolled_value:int)
 
+## Type of the dice (D4, D6, etc.).
 @export var dice_type: Types.DICE_TYPE
 
+## Stats associated with this dice.
 var dice_stats: DiceStats
+
+## Indicates if the dice is currently selected.
 @export var is_dice_selected:bool = false
 
 @onready var sprite_2d: Sprite2D = $Sprite2D

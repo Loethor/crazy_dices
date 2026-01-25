@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmyq13tvqep5k"]
+[gd_scene load_steps=4 format=3 uid="uid://cmyq13tvqep5k"]
 
 [ext_resource type="PackedScene" uid="uid://n6kr324me2cv" path="res://ui/gold_label.tscn" id="1_nb4k0"]
 [ext_resource type="PackedScene" uid="uid://bw3x7xycnl3tp" path="res://ui/roll_button.tscn" id="2_ks8t7"]
 [ext_resource type="PackedScene" uid="uid://bsvmbn02wdyyu" path="res://ui/game_progress.tscn" id="3_wl5ax"]
-[ext_resource type="Script" uid="uid://bv6ia1e46asi" path="res://ui/game_progress.gd" id="4_vkava"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -42,12 +41,5 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="GameProgress" parent="." instance=ExtResource("3_wl5ax")]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 6.0
-offset_right = 0.0
-offset_bottom = 16.0
-grow_horizontal = 2
-script = ExtResource("4_vkava")
+layout_mode = 0
+anchors_preset = 0

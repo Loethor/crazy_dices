@@ -17,10 +17,17 @@ var dice_stats: DiceStats
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 const HIGHLIGHT = preload("uid://dk7bpw08ca3yp")
 
+@export var dice_equipment: DiceEquipment
+
 func _ready():
 	randomize()
 	dice_stats = DiceStats.new(dice_type)
 	_setup_sprite()
+	dice_equipment.initialize_gold_labels(dice_stats.gold_value)
+	dice_equipment.calculate_average_gold(dice_stats.gold_value)
+	dice_equipment.initialize_equipment_slots(dice_stats.number_of_faces)
+	dice_equipment.set_spacer_stretch_ratio(dice_stats.number_of_faces - 1)
+
 
 func _setup_sprite() -> void:
 	sprite_2d.hframes = dice_stats.number_of_faces
@@ -51,3 +58,6 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		else:
 			GameState.select_dice(self)
 		toggle_highlight()
+
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+		dice_equipment.toggle_visibility()

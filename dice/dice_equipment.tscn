@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlah3cdebx8ti"]
+
+[ext_resource type="Script" uid="uid://ppyo8drtungj" path="res://dice/dice_equipment.gd" id="1_21t47"]
+
+[node name="DiceEquipment" type="PanelContainer"]
+offset_right = 26.0
+offset_bottom = 24.0
+script = ExtResource("1_21t47")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Information" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/Information"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="AverageGoldGainLabel" type="Label" parent="MarginContainer/VBoxContainer/Information"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GoldSlots" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EquipmentSlots" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3

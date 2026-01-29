@@ -18,4 +18,6 @@ func _check_cost() -> void:
 	(GameState.selected_dices.size() == 0)
 
 func _on_pressed() -> void:
-	GameState.process_roll()
+	var dice_manager = get_tree().get_first_node_in_group("dice_manager")
+	if dice_manager:
+		dice_manager.request_roll()

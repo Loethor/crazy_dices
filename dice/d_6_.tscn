@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://p6b6xno8tuse"]
+[gd_scene format=3 uid="uid://p6b6xno8tuse"]
 
 [ext_resource type="Script" uid="uid://dcgabe1v2bon4" path="res://dice/dice.gd" id="1_ibbqk"]
 [ext_resource type="Texture2D" uid="uid://bdmxjowgpbx32" path="res://assets/d6.png" id="2_fan6a"]
@@ -7,19 +7,19 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vpph"]
 size = Vector2(32, 32)
 
-[node name="D6_" type="Area2D" node_paths=PackedStringArray("dice_equipment")]
+[node name="D6_" type="Area2D" unique_id=1277865710 node_paths=PackedStringArray("dice_equipment")]
 script = ExtResource("1_ibbqk")
 dice_type = 1
 dice_equipment = NodePath("DiceEquipment")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2104218131]
 texture = ExtResource("2_fan6a")
 hframes = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2086967566]
 shape = SubResource("RectangleShape2D_3vpph")
 
-[node name="DiceEquipment" parent="." instance=ExtResource("3_fan6a")]
+[node name="DiceEquipment" parent="." unique_id=901627873 instance=ExtResource("3_fan6a")]
 visible = false
 offset_left = 16.0
 offset_top = -15.0

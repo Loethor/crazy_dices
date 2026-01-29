@@ -1,49 +1,53 @@
-[gd_scene load_steps=5 format=3 uid="uid://v10y3nhhyxhp"]
+[gd_scene format=3 uid="uid://v10y3nhhyxhp"]
 
 [ext_resource type="Script" uid="uid://cddv0js8q6o4n" path="res://dice/dice_position.gd" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://bwsg7f7qqj0ft" path="res://main/game.gd" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://b6ioeuml87dc5" path="res://dice/dice_manager.tscn" id="2_vfw6y"]
 [ext_resource type="PackedScene" uid="uid://u5fd5osscsa4" path="res://debug/debug.tscn" id="3_46yon"]
 [ext_resource type="PackedScene" uid="uid://cmyq13tvqep5k" path="res://ui/ui.tscn" id="4_46yon"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("debug")]
+[node name="Game" type="Node2D" unique_id=401090225 node_paths=PackedStringArray("debug")]
 script = ExtResource("1_yqjtg")
 debug = NodePath("CanvasLayer/Debug")
 
-[node name="Dices" type="Node2D" parent="."]
+[node name="DiceManager" parent="." unique_id=1610217868 node_paths=PackedStringArray("dices") instance=ExtResource("2_vfw6y")]
+dices = NodePath("../Dices")
 
-[node name="DicePositions" type="Node2D" parent="."]
+[node name="Dices" type="Node2D" parent="." unique_id=318343243]
 
-[node name="Marker2D" type="Marker2D" parent="DicePositions"]
+[node name="DicePositions" type="Node2D" parent="." unique_id=1137394099]
+
+[node name="Marker2D" type="Marker2D" parent="DicePositions" unique_id=1963876460]
 position = Vector2(80, 60)
 script = ExtResource("1_uwrxv")
 order = 1
 
-[node name="Marker2D2" type="Marker2D" parent="DicePositions"]
+[node name="Marker2D2" type="Marker2D" parent="DicePositions" unique_id=1904494266]
 position = Vector2(160, 60)
 script = ExtResource("1_uwrxv")
 
-[node name="Marker2D3" type="Marker2D" parent="DicePositions"]
+[node name="Marker2D3" type="Marker2D" parent="DicePositions" unique_id=766801626]
 position = Vector2(240, 60)
 script = ExtResource("1_uwrxv")
 order = 2
 
-[node name="Marker2D4" type="Marker2D" parent="DicePositions"]
+[node name="Marker2D4" type="Marker2D" parent="DicePositions" unique_id=29798524]
 position = Vector2(80, 120)
 script = ExtResource("1_uwrxv")
 order = 4
 
-[node name="Marker2D5" type="Marker2D" parent="DicePositions"]
+[node name="Marker2D5" type="Marker2D" parent="DicePositions" unique_id=448693577]
 position = Vector2(160, 120)
 script = ExtResource("1_uwrxv")
 order = 3
 
-[node name="Marker2D6" type="Marker2D" parent="DicePositions"]
+[node name="Marker2D6" type="Marker2D" parent="DicePositions" unique_id=1448885818]
 position = Vector2(240, 120)
 script = ExtResource("1_uwrxv")
 order = 5
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1076061982]
 
-[node name="Debug" parent="CanvasLayer" instance=ExtResource("3_46yon")]
+[node name="Debug" parent="CanvasLayer" unique_id=1496985885 instance=ExtResource("3_46yon")]
 
-[node name="UI" parent="CanvasLayer" instance=ExtResource("4_46yon")]
+[node name="UI" parent="CanvasLayer" unique_id=1030080556 instance=ExtResource("4_46yon")]

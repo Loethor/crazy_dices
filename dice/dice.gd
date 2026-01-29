@@ -3,6 +3,8 @@ extends Area2D
 
 ## Emitted when the dice is rolled, providing the rolled value.
 signal number_rolled(rolled_value:int)
+## Emitted when player clicks to select/unselect this dice
+signal selection_toggled(dice: Dice)
 
 ## Type of the dice (D4, D6, etc.).
 @export var dice_type: Types.DICE_TYPE
@@ -11,7 +13,7 @@ signal number_rolled(rolled_value:int)
 var dice_stats: DiceStats
 
 ## Indicates if the dice is currently selected.
-@export var is_dice_selected:bool = false
+@export var is_dice_selected:bool = false : set = _set_is_dice_selected
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
@@ -28,6 +30,10 @@ func _ready():
 	dice_equipment.initialize_equipment_slots(dice_stats.number_of_faces)
 	dice_equipment.set_spacer_stretch_ratio(dice_stats.number_of_faces - 1)
 
+func _set_is_dice_selected(value: bool) -> void:
+	is_dice_selected = value
+	if is_node_ready():
+		toggle_highlight()
 
 func _setup_sprite() -> void:
 	sprite_2d.hframes = dice_stats.number_of_faces
@@ -42,10 +48,13 @@ func roll() -> void:
 	var rolled_value = randi_range(1, dice_stats.number_of_faces)
 	_update_face(rolled_value)
 	print("Rolled: ", rolled_value)
+	# Emit gold amount, let listener handle adding to player gold
 	number_rolled.emit(rolled_value)
-	GameState.player_gold += dice_stats.gold_value[rolled_value-1]
 
-func _update_face(rolled_value:int ) -> void:
+func get_rolled_gold(rolled_value: int) -> int:
+	return dice_stats.gold_value[rolled_value - 1]
+
+func _update_face(rolled_value:int) -> void:
 	sprite_2d.frame = rolled_value - 1
 
 func toggle_highlight():
@@ -53,11 +62,7 @@ func toggle_highlight():
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		if is_dice_selected:
-			GameState.unselect_dice(self)
-		else:
-			GameState.select_dice(self)
-		toggle_highlight()
+		selection_toggled.emit(self)
 
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
 		dice_equipment.toggle_visibility()

@@ -8,12 +8,11 @@
 
 [node name="Game" type="Node2D" unique_id=401090225 node_paths=PackedStringArray("debug")]
 script = ExtResource("1_yqjtg")
+is_debug_enabled = null
 debug = NodePath("CanvasLayer/Debug")
 
 [node name="DiceManager" parent="." unique_id=1610217868 node_paths=PackedStringArray("dices") instance=ExtResource("2_vfw6y")]
-dices = NodePath("../Dices")
-
-[node name="Dices" type="Node2D" parent="." unique_id=318343243]
+dices = NodePath("")
 
 [node name="DicePositions" type="Node2D" parent="." unique_id=1137394099]
 

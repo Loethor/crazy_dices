@@ -6,7 +6,6 @@ const MAX_NUMBER_OF_DICES := 6
 const MIN_NUMBER_OF_DICES := 1
 
 @onready var dice_positions: Node2D = $DicePositions
-@onready var dices: Node2D = $Dices
 @onready var dice_manager: DiceManager = $DiceManager
 
 @export var is_debug_enabled:bool = true
@@ -26,33 +25,26 @@ func _setup_debug() -> void:
 
 func _spawn_dice() -> void:
 	if GameState.current_position >= MAX_NUMBER_OF_DICES:
+		push_warning("Cannot spawn dice: maximum number reached")
+		return
+
+	var position = get_current_position()
+	if position == Vector2.ZERO and GameState.current_position != 0:
+		push_error("Failed to get valid dice position")
 		return
 
 	var dice_scenes: Array[PackedScene] = [D_4, D_6]
-	var random_dice = dice_scenes.pick_random()
-	var dice: Dice = random_dice.instantiate()
-	dice.position = get_current_position()
-	dices.add_child(dice)
-
-	dice_manager.connect_new_dice(dice)
-
+	var dice_scene = dice_scenes.pick_random()
+	dice_manager.spawn_dice(dice_scene, position)
 	GameState.current_position += 1
 
 func _remove_dice() -> void:
 	if GameState.current_position <= MIN_NUMBER_OF_DICES:
+		push_warning("Cannot remove dice: minimum number reached")
 		return
 
-	var dice_to_remove: Dice = dices.get_child(-1)
-	if dice_to_remove == null:
-		return
-
-	dice_manager.disconnect_dice(dice_to_remove)
-
-	if dice_to_remove.is_dice_selected:
-		GameState.unselect_dice(dice_to_remove)
-
-	GameState.current_position -= 1
-	dice_to_remove.queue_free()
+	if dice_manager.remove_last_dice():
+		GameState.current_position -= 1
 
 func get_current_position() -> Vector2:
 	for dice_position in dice_positions.get_children():

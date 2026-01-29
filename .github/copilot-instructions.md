@@ -234,3 +234,13 @@ game_turn += 1
 # Cost scales: free for 1 dice, then +1 gold per additional dice
 roll_cost = max(0, selected_dices.size() - 1) + extra_cost
 ```
+
+## Testing
+
+For testing conventions, see [copilot-testing-instructions.md](.github/copilot-testing-instructions.md).
+
+When writing tests:
+- Follow GUT framework conventions
+- Use Arrange-Act-Assert pattern
+- Name tests: `test_<method>_<scenario>_<expected_result>`
+- See full testing guidelines in copilot-testing-instructions.md

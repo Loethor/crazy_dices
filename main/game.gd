@@ -54,12 +54,11 @@ func _remove_dice() -> void:
 
 ## Returns the position for the current dice based on DicePosition markers.
 func get_current_position() -> Vector2:
-	for dice_position in dice_positions.get_children():
-		if dice_position is DicePosition:
-			if GameState.current_position == dice_position.order:
-				return dice_position.position
+	var positions = dice_positions.get_children()
+	if GameState.current_position < positions.size():
+		return positions[GameState.current_position].position
 
-	push_warning("No DicePosition found for order: ", GameState.current_position)
+	push_error("No DicePosition found at index: ", GameState.current_position)
 	return Vector2.ZERO
 
 func _on_roll_requested(dice_to_roll: Array[Dice]) -> void:

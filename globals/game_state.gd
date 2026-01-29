@@ -50,7 +50,7 @@ func _set_player_gold(new_gold:int) -> void:
 	player_gold = new_gold
 	gold_changed.emit()
 
-
+## Adds a dice to the selected dices array and updates roll cost.
 func select_dice(new_dice: Dice) -> void:
 	if new_dice not in selected_dices:
 		selected_dices.append(new_dice)
@@ -58,6 +58,7 @@ func select_dice(new_dice: Dice) -> void:
 		calculate_roll_cost()
 		number_of_dice_changed.emit()
 
+## Removes a dice from the selected dices array and updates roll cost.
 func unselect_dice(dice_to_remove: Dice) -> void:
 	if dice_to_remove in selected_dices:
 		extra_cost -= dice_to_remove.dice_stats.roll_cost
@@ -65,12 +66,14 @@ func unselect_dice(dice_to_remove: Dice) -> void:
 		calculate_roll_cost()
 		number_of_dice_changed.emit()
 
+## Calculates the roll cost based on selected dices and extra costs.
 func calculate_roll_cost() -> void:
 	if selected_dices.size() > 1:
 		roll_cost = selected_dices.size() - 1 + extra_cost
 	else:
 		roll_cost = extra_cost
 
+## Unselects all dices and resets extra costs.
 func unselect_all_dices() -> void:
 	for dice in selected_dices:
 		extra_cost -= dice.dice_stats.roll_cost
@@ -78,9 +81,12 @@ func unselect_all_dices() -> void:
 	calculate_roll_cost()
 	number_of_dice_changed.emit()
 
+## Returns true if the player has enough gold to afford the roll.
 func can_afford_roll() -> bool:
 	return player_gold >= roll_cost
 
+## Processes a roll request, deducts gold, and returns selected dices.
+## Increments game turn and unselects all dices.
 func process_roll() -> Array[Dice]:
 	if !can_afford_roll():
 		push_warning("Cannot afford roll!")
@@ -94,6 +100,7 @@ func process_roll() -> Array[Dice]:
 
 	return dice_to_roll
 
+## Resets all game state variables to their initial values.
 func reset_game() -> void:
 	game_turn = 1
 	current_position = 0

@@ -44,6 +44,7 @@ func _setup_sprite() -> void:
 	sprite_2d.material = mat
 	toggle_highlight()
 
+## Rolls the dice and emits the rolled value.
 func roll() -> void:
 	var rolled_value = randi_range(1, dice_stats.number_of_faces)
 	_update_face(rolled_value)
@@ -51,13 +52,15 @@ func roll() -> void:
 	# Emit gold amount, let listener handle adding to player gold
 	number_rolled.emit(rolled_value)
 
+## Returns the gold value for a given rolled value.
 func get_rolled_gold(rolled_value: int) -> int:
 	return dice_stats.gold_value[rolled_value - 1]
 
 func _update_face(rolled_value:int) -> void:
 	sprite_2d.frame = rolled_value - 1
 
-func toggle_highlight():
+## Toggles the highlight effect based on selection state.
+func toggle_highlight() -> void:
 	sprite_2d.material.set_shader_parameter("outline_width", 1 if is_dice_selected else 0)
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:

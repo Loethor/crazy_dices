@@ -46,6 +46,7 @@ func _remove_dice() -> void:
 	if dice_manager.remove_last_dice():
 		GameState.current_position -= 1
 
+## Returns the position for the current dice based on DicePosition markers.
 func get_current_position() -> Vector2:
 	for dice_position in dice_positions.get_children():
 		if dice_position is DicePosition:

@@ -38,6 +38,8 @@ func _sync_dice_states() -> void:
 		if dice is Dice:
 			dice.is_dice_selected = dice in GameState.selected_dices
 
+## Spawns a new dice as a child of this manager.
+## Returns the instantiated dice instance.
 func spawn_dice(dice_scene: PackedScene, at_position: Vector2) -> Dice:
 	var dice: Dice = dice_scene.instantiate()
 	dice.position = at_position
@@ -45,6 +47,8 @@ func spawn_dice(dice_scene: PackedScene, at_position: Vector2) -> Dice:
 	_connect_dice(dice)
 	return dice
 
+## Removes the last spawned dice from the manager.
+## Returns true if successful, false if no dice to remove.
 func remove_last_dice() -> bool:
 	var dice_to_remove: Dice = get_child(-1) if get_child_count() > 0 else null
 
@@ -58,6 +62,8 @@ func remove_last_dice() -> bool:
 	dice_to_remove.queue_free()
 	return true
 
+## Processes the roll request through GameState and emits roll_requested signal.
+## Only emits if there are dice to roll.
 func request_roll() -> void:
 	var dice_to_roll = GameState.process_roll()
 	if dice_to_roll.size() > 0:

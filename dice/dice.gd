@@ -13,12 +13,14 @@ signal selection_toggled(dice: Dice)
 var dice_stats: DiceStats
 
 ## Indicates if the dice is currently selected.
-@export var is_dice_selected:bool = false : set = _set_is_dice_selected
+@export var is_dice_selected: bool = false : set = _set_is_dice_selected
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+## Highlight shader for selection visual feedback.
 const HIGHLIGHT = preload("uid://dk7bpw08ca3yp")
 
+## Reference to the dice equipment panel.
 @export var dice_equipment: DiceEquipment
 
 func _ready():

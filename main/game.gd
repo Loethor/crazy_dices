@@ -1,14 +1,20 @@
 extends Node2D
 
+## D6 dice scene.
 const D_6 := preload("uid://p6b6xno8tuse")
+## D4 dice scene.
 const D_4 := preload("uid://uknn3h2no3y4")
+## Maximum number of dices that can be spawned.
 const MAX_NUMBER_OF_DICES := 6
+## Minimum number of dices that must remain.
 const MIN_NUMBER_OF_DICES := 1
 
 @onready var dice_positions: Node2D = $DicePositions
 @onready var dice_manager: DiceManager = $DiceManager
 
-@export var is_debug_enabled:bool = true
+## Whether debug controls are shown.
+@export var is_debug_enabled: bool = true
+## Reference to debug panel.
 @export var debug: Debug
 
 func _ready() -> void:

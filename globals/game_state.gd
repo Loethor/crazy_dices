@@ -38,9 +38,8 @@ func _set_game_turn(new_turn:int) -> void:
 	game_turn = new_turn
 	game_turn_changed.emit()
 
-
 ## Cost to be added to the roll cost due to different effects.
-var extra_cost:int = 0
+var extra_cost: int = 0
 
 func _set_roll_cost(new_roll_cost:int) -> void:
 	roll_cost = new_roll_cost

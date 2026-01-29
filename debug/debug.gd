@@ -1,8 +1,11 @@
 class_name Debug
 extends VBoxContainer
 
+## Emitted when spawn dice button is pressed.
 signal spawn_dice_pressed
+## Emitted when remove dice button is pressed.
 signal remove_dice_pressed
+
 @onready var dice_label: Label = $GridContainer/DiceLabel
 @onready var turn_label: Label = $GridContainer/TurnLabel
 

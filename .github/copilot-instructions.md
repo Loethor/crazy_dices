@@ -56,3 +56,6 @@ extends Node2D
 ## @tutorial(Tutorial 2): https://example.com/tutorial_2
 ## @experimental
 ```
+
+Don't add comments for obvious code.
+Don't add documentation for onready variables unless necessary.

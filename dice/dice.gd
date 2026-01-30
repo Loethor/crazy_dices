@@ -27,10 +27,11 @@ func _ready():
 	randomize()
 	dice_stats = DiceStats.new(dice_type)
 	_setup_sprite()
-	dice_equipment.initialize_gold_labels(dice_stats.gold_value)
-	dice_equipment.calculate_average_gold(dice_stats.gold_value)
-	dice_equipment.initialize_equipment_slots(dice_stats.number_of_faces)
-	dice_equipment.set_spacer_stretch_ratio(dice_stats.number_of_faces - 1)
+	if dice_equipment:
+		dice_equipment.initialize_gold_labels(dice_stats.gold_value)
+		dice_equipment.calculate_average_gold(dice_stats.gold_value)
+		dice_equipment.initialize_equipment_slots(dice_stats.number_of_faces)
+		dice_equipment.set_spacer_stretch_ratio(dice_stats.number_of_faces - 1)
 
 func _set_is_dice_selected(value: bool) -> void:
 	is_dice_selected = value
@@ -56,14 +57,19 @@ func roll() -> void:
 
 ## Returns the gold value for a given rolled value.
 func get_rolled_gold(rolled_value: int) -> int:
+	if not dice_stats:
+		push_error("dice_stats is null in get_rolled_gold")
+		return 0
 	return dice_stats.gold_value[rolled_value - 1]
 
 func _update_face(rolled_value:int) -> void:
-	sprite_2d.frame = rolled_value - 1
+	if sprite_2d:
+		sprite_2d.frame = rolled_value - 1
 
 ## Toggles the highlight effect based on selection state.
 func toggle_highlight() -> void:
-	sprite_2d.material.set_shader_parameter("outline_width", 1 if is_dice_selected else 0)
+	if sprite_2d:
+		sprite_2d.material.set_shader_parameter("outline_width", 1 if is_dice_selected else 0)
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:

@@ -53,7 +53,7 @@ func remove_last_dice() -> bool:
 	var dice_to_remove: Dice = get_child(-1) if get_child_count() > 0 else null
 
 	if dice_to_remove == null or not dice_to_remove is Dice:
-		push_error("No dice to remove")
+		push_warning("No dice to remove")
 		return false
 
 	if dice_to_remove.is_dice_selected:
